@@ -45,196 +45,30 @@ async function run() {
     const database = client.db('shoes_management');
     const products = database.collection('shoes')
     const users = database.collection('users')
-    // const allProducts=
-    //    [
-    //     {
-    //       "name": "Running Shoes",
-    //       "productQuantity": 50,
-    //       "productPrice": 89.99,
-    //       "brand": "Nike",
-    //       "size": "10",
-    //       "color": "Blue",
-    //       "releaseDate": "2022-01-01",
-    //       "model": "Air Max",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller1",
-    //         "sellerId": "65b3ff6c7f0cecf5cb0e0662"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": false,
-    //         "buyerId": null
-    //       }
-    //     },
-    //     {
-    //       "name": "Casual Sneakers",
-    //       "productQuantity": 30,
-    //       "productPrice": 49.99,
-    //       "brand": "Adidas",
-    //       "size": "9",
-    //       "color": "White",
-    //       "releaseDate": "2022-02-15",
-    //       "model": "Superstar",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller2",
-    //         "sellerId": "65b3ea84cb6fb0e625ecbcb2"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": true,
-    //         "buyerId": "buyer789"
-    //       }
-    //     },
-    //     {
-    //       "name": "Basketball Shoes",
-    //       "productQuantity": 20,
-    //       "productPrice": 119.99,
-    //       "brand": "Jordan",
-    //       "size": "11",
-    //       "color": "Red",
-    //       "releaseDate": "2022-03-10",
-    //       "model": "Air Jordan",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller1",
-    //         "sellerId": "65b3ff6c7f0cecf5cb0e0662"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": true,
-    //         "buyerId": "buyer456"
-    //       }
-    //     },
-    //     {
-    //       "name": "Running Shoes 2",
-    //       "productQuantity": 40,
-    //       "productPrice": 79.99,
-    //       "brand": "Reebok",
-    //       "size": "9.5",
-    //       "color": "Black",
-    //       "releaseDate": "2022-04-05",
-    //       "model": "Floatride Run",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller3",
-    //         "sellerId": "seller3_id"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": false,
-    //         "buyerId": null
-    //       }
-    //     },
-    //     {
-    //       "name": "High-Top Sneakers",
-    //       "productQuantity": 25,
-    //       "productPrice": 59.99,
-    //       "brand": "Converse",
-    //       "size": "8",
-    //       "color": "Green",
-    //       "releaseDate": "2022-05-20",
-    //       "model": "Chuck Taylor",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller1",
-    //         "sellerId": "65b3ff6c7f0cecf5cb0e0662"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": false,
-    //         "buyerId": null
-    //       }
-    //     },
-    //     {
-    //       "name": "Trail Running Shoes",
-    //       "productQuantity": 35,
-    //       "productPrice": 99.99,
-    //       "brand": "Salomon",
-    //       "size": "10.5",
-    //       "color": "Grey",
-    //       "releaseDate": "2022-06-15",
-    //       "model": "Speedcross",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller2",
-    //         "sellerId": "65b3ea84cb6fb0e625ecbcb2"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": true,
-    //         "buyerId": "buyer123"
-    //       }
-    //     },
-    //     {
-    //       "name": "Skate Shoes",
-    //       "productQuantity": 15,
-    //       "productPrice": 69.99,
-    //       "brand": "Vans",
-    //       "size": "8.5",
-    //       "color": "Checkerboard",
-    //       "releaseDate": "2022-07-01",
-    //       "model": "Old Skool",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller3",
-    //         "sellerId": "seller3_id"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": true,
-    //         "buyerId": "buyer789"
-    //       }
-    //     },
-    //     {
-    //       "name": "Soccer Cleats",
-    //       "productQuantity": 20,
-    //       "productPrice": 129.99,
-    //       "brand": "Adidas",
-    //       "size": "11",
-    //       "color": "Black/White",
-    //       "releaseDate": "2022-08-10",
-    //       "model": "Predator",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller1",
-    //         "sellerId": "65b3ff6c7f0cecf5cb0e0662"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": false,
-    //         "buyerId": null
-    //       }
-    //     },
-    //     {
-    //       "name": "Fashion Sandals",
-    //       "productQuantity": 18,
-    //       "productPrice": 39.99,
-    //       "brand": "Birkenstock",
-    //       "size": "7",
-    //       "color": "Brown",
-    //       "releaseDate": "2022-09-05",
-    //       "model": "Arizona",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller2",
-    //         "sellerId": "65b3ea84cb6fb0e625ecbcb2"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": false,
-    //         "buyerId": null
-    //       }
-    //     },
-    //     {
-    //       "name": "Hiking Boots",
-    //       "productQuantity": 22,
-    //       "productPrice": 109.99,
-    //       "brand": "Merrell",
-    //       "size": "9.5",
-    //       "color": "Dark Brown",
-    //       "releaseDate": "2022-10-20",
-    //       "model": "Moab 2",
-    //       "sellerInfo": {
-    //         "sellerName": "Seller3",
-    //         "sellerId": "seller3_id"
-    //       },
-    //       "sellingDetails": {
-    //         "sold": true,
-    //         "buyerId": "buyer456"
-    //       }
-    //     }
-    //   ]
-    
-    // const result=await products.insertMany(allProducts);
-    
-    
-   
-    
-    
+    const sales = database.collection('sales')
+
+
+    app.get('/sales/:id',verifyJWT,async(req,res)=>{
+      const sellerId=req.params.id
+      const allSales=await sales.find().toArray();
+      const sell = allSales.filter(sell=>sell.sellerId==sellerId)
+      
+
+      if (!sell) {
+        res.status(404).json({success:false, message: 'Buyer not found' });
+        return;
+      }
+
+      res.json(sell);
+
+    })
+
+    app.post('/sales',verifyJWT,async(req,res)=>{
+      const data=req.body;
+      
+      const result = await sales.insertOne(data);
+      res.json({status:"success", message: 'Sale successfully', productId: result.insertedId });
+    })
 
 
     // Get all products
@@ -263,7 +97,7 @@ async function run() {
     app.post('/product',verifyJWT, async (req, res) => {
       const newProduct = req.body;
       const result = await products.insertOne(newProduct);
-      res.json({ message: 'Product created successfully', productId: result.insertedId });
+      res.json({status:"success", message: 'Product created successfully', productId: result.insertedId });
     });
 
     // Delete a product by ID
@@ -272,11 +106,11 @@ async function run() {
       const result = await products.deleteOne({ _id: new ObjectId(productId) });
 
       if (result.deletedCount === 0) {
-        res.status(404).json({ message: 'Product not found' });
+        res.status(404).json({success:false, message: 'Product not found' });
         return;
       }
 
-      res.json({ message: 'Product deleted successfully' });
+      res.json({success:true, message: 'Product deleted successfully' });
     });
     app.delete('/products',verifyJWT, async (req, res) => {
       const  productIds  = req.body;
@@ -306,14 +140,14 @@ async function run() {
     app.post('/updateProduct/:id', verifyJWT, async (req, res) => {
       const updatedProduct = req.body;
       const id=req.params.id
-      console.log(id);
       console.log(updatedProduct)
+      
      
     
       try {
         // Validate that updatedProduct is an object with at least an _id and fields to update
-        if (!updatedProduct  || Object.keys(updatedProduct).length < 2) {
-          return res.status(400).json({ message: 'Invalid request body' });
+        if (!updatedProduct  || Object.keys(updatedProduct).length < 1) {
+          return res.status(400).json({success:false, message: 'Invalid request body' });
         }
     
         const result = await products.updateOne(
@@ -323,13 +157,13 @@ async function run() {
     
         // Check if the product was updated
         if (result.modifiedCount === 0) {
-          return res.status(404).json({ message: 'Product not found' });
+          return res.status(404).json({success:false, message: 'Product not found' });
         }
     
-        res.json({ message: 'Product updated successfully' });
+        res.json({success:true, message: 'Product updated successfully' });
       } catch (error) {
         console.error('Error updating product:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ success:false,message: 'Internal Server Error' });
       }
       
     });
