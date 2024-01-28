@@ -48,6 +48,9 @@ async function run() {
     const sales = database.collection('sales')
 
 
+   
+
+
     app.get('/sales/:id',verifyJWT,async(req,res)=>{
       const sellerId=req.params.id
       const allSales=await sales.find().toArray();
@@ -171,12 +174,23 @@ async function run() {
     // Create a new user
     app.post('/user', async (req, res) => {
       const user = req.body;
-      const result = await users.insertOne(user);
-
-
-      const token = jwt.sign({ email: user.email, password: user.password }, jwtKey, { expiresIn: '1h' });
-      res.json({ result, token });
-
+      
+      try {
+       
+        const result = await users.insertOne(user);
+    
+       
+        const insertedUser = await users.findOne({ _id:new ObjectId(result.insertedId) });
+    
+        const token = jwt.sign({ email: user.email, password: user.password }, jwtKey, { expiresIn: '1h' });
+    
+        
+        res.json({ user: insertedUser, token });
+      } catch (error) {
+        
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
     });
     // Login route
     app.post('/user/login', async (req, res) => {
@@ -198,7 +212,7 @@ async function run() {
       res.json(allUsers);
     });
     //Get user by id
-    app.get('/user/:id',async(req,res)=>{
+    app.get('/user/:id',verifyJWT,async(req,res)=>{
       const id=req.params.id
       const user = await users.findOne({ _id: new ObjectId(id) });
       if (user) {
