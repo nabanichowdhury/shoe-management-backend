@@ -240,3 +240,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Shoe management ${port}`)
 })
+module.exports=app
